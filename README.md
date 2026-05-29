@@ -6,7 +6,7 @@ Simulacion de un mini sistema operativo que implementa procesos concurrentes y p
 
 MiniKernel funciona como un proceso en espacio de usuario que utiliza hilos para simular CPUs, generar procesos y reportar metricas de rendimiento. Los procesos son representados mediante una estructura PCB (Process Control Block).
 
-##Componentes
+## Componentes
 - **Generador de procesos** — hilo que crea procesos con burst time y arrival time usando distribucion de Poisson
 - **Cola de procesos listos** — estructura FIFO protegida con mutex y variables condicionales
 - **CPUs simuladas** — 3 hilos que ejecutan procesos con Round Robin y quantum=2
