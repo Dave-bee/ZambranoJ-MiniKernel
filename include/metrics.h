@@ -1,0 +1,30 @@
+#ifndef METRICS_H
+#define METRICS_H
+
+#include "pcb.h"
+#include <pthread.h>
+
+#define MAX_PROC 100
+
+typedef struct {
+    int pid;
+    int arrival_time;
+    int completion_time;
+    int burst_time;
+    int response_time;
+} proc_metrics_t;
+
+typedef struct {
+    proc_metrics_t records[MAX_PROC];
+    int total;
+    double throughput;
+    double avg_response_time;
+    pthread_mutex_t lock;
+} metrics_t;
+
+void metrics_init(metrics_t * m);
+void metrics_record(metrics_t * m, pcb_t * p, int t_end);
+void metrics_calculate(metrics_t * m, int t_total);
+void metrics_print(metrics_t * m);
+
+#endif

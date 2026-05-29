@@ -1,0 +1,24 @@
+#ifndef QUEUE_H
+#define QUEUE_H
+
+#include "pcb.h"
+#include "sync.h"
+
+#define MAX_PROCESSES 100
+
+typedef struct {
+    pcb_t *processes[MAX_PROCESSES];
+    int front;
+    int rear;
+    int size;
+    sync_t sync;
+} ready_queue_t;
+
+void queue_init(ready_queue_t * q);
+void queue_insert(ready_queue_t * q, pcb_t * process);
+pcb_t *queue_remove(ready_queue_t * q);
+int queue_empty(ready_queue_t * q);
+void queue_destroy(ready_queue_t * q);
+
+extern int simulacion_activa;
+#endif
